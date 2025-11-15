@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook Preview</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📓 Jupyter Notebook Preview</h1>
+            <p>GitHubリポジトリからJupyter Notebookを取得してプレビュー</p>
+        </header>
+
+        <div class="controls">
+            <div class="tab-container">
+                <button class="tab-button active" data-tab="github">GitHubから取得</button>
+                <button class="tab-button" data-tab="upload">ファイルをアップロード</button>
+            </div>
+
+            <div class="tab-content" id="github-tab">
+                <div class="input-group">
+                    <label for="repo-url">GitHubリポジトリURL:</label>
+                    <input type="text" id="repo-url" placeholder="例: https://github.com/user/repo" />
+                </div>
+                <div class="input-group">
+                    <label for="file-path">ノートブックのパス:</label>
+                    <input type="text" id="file-path" placeholder="例: notebooks/example.ipynb" />
+                </div>
+                <div class="input-group">
+                    <label for="branch">ブランチ (オプション):</label>
+                    <input type="text" id="branch" placeholder="デフォルト: main" />
+                </div>
+                <button id="fetch-button" class="primary-button">取得</button>
+            </div>
+
+            <div class="tab-content hidden" id="upload-tab">
+                <div class="input-group">
+                    <label for="file-upload">ノートブックファイルを選択:</label>
+                    <input type="file" id="file-upload" accept=".ipynb" />
+                </div>
+                <button id="upload-button" class="primary-button">読み込み</button>
+            </div>
+        </div>
+
+        <div id="status" class="status hidden"></div>
+
+        <div id="notebook-info" class="notebook-info hidden">
+            <h3>ノートブック情報</h3>
+            <div id="info-content"></div>
+        </div>
+
+        <div id="notebook-container" class="notebook-container"></div>
+    </div>
+
+    <script src="js/github-api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
